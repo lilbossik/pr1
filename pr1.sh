@@ -73,3 +73,12 @@ while getopts ":upe:hl:-:" option; do
         *) echo "Неизвестный аргумент -$OPTARG" >&2; show_help; exit 1;;
     esac
 done
+
+# Выполнение действия в зависимости от типа
+case $ACTION in
+    "users") list_users;;
+    "processes") list_processes;;
+    *) echo "Не указана команда для выполнения. Используйте -h или --help для справки." >&2; exit 1;;
+esac
+
+exit 0
