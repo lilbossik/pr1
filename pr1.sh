@@ -27,3 +27,19 @@ list_users() {
         } 2> "$ERRORFILE"
     fi
 }
+
+# Функция для вывода запущенных процессов
+list_processes() {
+    if [ ! -z "$LOGFILE" ]; then
+        {
+            echo "PID   Имя процесса"
+            echo "-------------------------------------"
+            ps -e --format pid,comm --sort pid
+        } > "$LOGFILE" 2> "$ERRORFILE"
+    else
+        {
+            echo "PID   Имя процесса"
+            echo "-------------------------------------"
+            ps -e --format pid,comm --sort pid
+        } 2> "$ERRORFILE"
+    fi
