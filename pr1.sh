@@ -67,7 +67,7 @@ while getopts ":upe:hl:-:" option; do
                     OPTIND=$((OPTIND + 1));;
                 errors) 
                     ERRORFILE="${!OPTIND}"; 
-                    OPTIND=$((OPTIND + 1));
+                    OPTIND=$((OPTIND + 1));;
                 *) echo "Неизвестный аргумент --${OPTARG}" >&2; show_help; exit 1;;
             esac;;
         *) echo "Неизвестный аргумент -$OPTARG" >&2; show_help; exit 1;;
