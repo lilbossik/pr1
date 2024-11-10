@@ -43,3 +43,4 @@ list_processes() {
             ps -e --format pid,comm --sort pid
         } 2> "$ERRORFILE"
     fi
+}
