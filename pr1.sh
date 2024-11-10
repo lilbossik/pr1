@@ -48,3 +48,28 @@ list_processes() {
 # Переменные для хранения путей логов
 LOGFILE=""
 ERRORFILE=""
+
+# Обработка аргументов командной строки
+while getopts ":upe:hl:-:" option; do
+    case $option in
+        u) ACTION="users";;
+        p) ACTION="processes";;
+        e) ERRORFILE="$OPTARG";;
+        l) LOGFILE="$OPTARG";;
+        h) show_help; exit 0;;
+        -) 
+            case "${OPTARG}" in
+                users) ACTION="users";;
+                processes) ACTION="processes";;
+                help) show_help; exit 0;;
+                log) 
+                    LOGFILE="${!OPTIND}"; 
+                    OPTIND=$((OPTIND + 1));;
+                errors) 
+                    ERRORFILE="${!OPTIND}"; 
+                    OPTIND=$((OPTIND + 1));
+                *) echo "Неизвестный аргумент --${OPTARG}" >&2; show_help; exit 1;;
+            esac;;
+        *) echo "Неизвестный аргумент -$OPTARG" >&2; show_help; exit 1;;
+    esac
+done
