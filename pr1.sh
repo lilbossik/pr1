@@ -44,3 +44,7 @@ list_processes() {
         } 2> "$ERRORFILE"
     fi
 }
+
+# Переменные для хранения путей логов
+LOGFILE=""
+ERRORFILE=""
